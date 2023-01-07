@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "584039288470",
+    "project_id": "sundae-bar",
+    "storage_bucket": "sundae-bar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584039288470:android:ec4485488ff2f53c137cb7",
+        "android_client_info": {
+          "package_name": "com.sundae.beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584039288470-o0bb74gfmll5oro2u11dkbdabcs4qeup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdmoZFdJIrYEZiuFBmoJEJ_OyBsu53K7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584039288470-o0bb74gfmll5oro2u11dkbdabcs4qeup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
