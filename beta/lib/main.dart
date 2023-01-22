@@ -2,6 +2,7 @@ import 'package:beta/providers/layout.dart';
 import 'package:beta/providers/mobile_layout.dart';
 import 'package:beta/providers/web_layout.dart';
 import 'package:beta/templates/login.dart';
+import 'package:beta/templates/register.dart';
 import 'package:beta/utils/palette.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
 //        mobileScreenLayout: MobileLayout(),
 //        webScreenLayout: WebLayout(),
 //      ),
-        home: Login(),
+        home: Register(),
     );
   }
 }

@@ -3,21 +3,23 @@ import 'package:beta/widgets/text_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
     _passController.dispose();
+    _usernameController.dispose();
   }
 
   @override
@@ -38,11 +40,46 @@ class _LoginState extends State<Login> {
           ),
           const SizedBox(height: 69),
 
+          // blank avatar
+          Stack(
+            children: [
+              const CircleAvatar(
+                radius: 69,
+                backgroundImage: AssetImage("assets/pics/default.png"),
+              ),
+              Positioned(
+                bottom: -12,
+                left: 90,
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.add_a_photo),
+                ),
+              ),
+            ],
+          ),
+
+          // for spacing
+          const SizedBox(
+            height: 30,
+          ),
+
           // email input
           TextInput(
             hintText: 'Enter email',
             textInputType: TextInputType.emailAddress,
             textEditingController: _emailController,
+          ),
+
+          // for spacing
+          const SizedBox(
+            height: 30,
+          ),
+
+          // username input
+          TextInput(
+            hintText: 'Enter username',
+            textInputType: TextInputType.text,
+            textEditingController: _usernameController,
           ),
 
           // for spacing
@@ -65,9 +102,6 @@ class _LoginState extends State<Login> {
 
           // submit
           InkWell(
-            onTap: (() {
-              
-            }),
             child: Container(
               child: const Text('Submit'),
               width: double.infinity,
@@ -91,34 +125,6 @@ class _LoginState extends State<Login> {
             child: Container(),
           ),
 
-          // sign-up prompt
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                child: const Text("New user?"),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 9,
-                ),
-              ),
-              GestureDetector(
-                onTap: (() {
-                  
-                }),
-                child: Container(
-                  child: const Text(
-                    "Register here.",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 9,
-                  ),
-                ),
-              ),
-            ],
-          ),
         ]),
       )),
     );
