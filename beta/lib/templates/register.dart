@@ -1,7 +1,11 @@
+import 'package:beta/output/authorizations.dart';
 import 'package:beta/utils/palette.dart';
 import 'package:beta/widgets/text_input.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:beta/utils/tools.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -12,14 +16,22 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passController.dispose();
+    _passwordController.dispose();
     _usernameController.dispose();
+  }
+
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = img;
+    });
   }
 
   @override
@@ -43,15 +55,19 @@ class _RegisterState extends State<Register> {
           // blank avatar
           Stack(
             children: [
-              const CircleAvatar(
+              _image!=null?CircleAvatar(
                 radius: 69,
-                backgroundImage: AssetImage("assets/pics/default.png"),
+                backgroundImage: MemoryImage(_image!),
+                )
+              : const CircleAvatar(
+                radius: 69,
+                backgroundImage: AssetImage("assets/pics/pp.png"),
               ),
               Positioned(
                 bottom: -12,
-                left: 90,
+                right: 5,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: selectImage,
                   icon: const Icon(Icons.add_a_photo),
                 ),
               ),
@@ -91,7 +107,7 @@ class _RegisterState extends State<Register> {
           TextInput(
             hintText: 'Enter password',
             textInputType: TextInputType.emailAddress,
-            textEditingController: _passController,
+            textEditingController: _passwordController,
             isPass: true,
           ),
 
@@ -102,6 +118,14 @@ class _RegisterState extends State<Register> {
 
           // submit
           InkWell(
+            onTap:() async{
+              String response = await Authorizations().registerUser(
+                email: _emailController.text, 
+                password: _passwordController.text, 
+                username: _usernameController.text,
+                file: _image!,                
+                );
+            }, 
             child: Container(
               child: const Text('Submit'),
               width: double.infinity,

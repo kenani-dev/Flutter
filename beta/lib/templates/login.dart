@@ -12,12 +12,12 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passController.dispose();
+    _passwordController.dispose();
   }
 
   @override
@@ -54,7 +54,7 @@ class _LoginState extends State<Login> {
           TextInput(
             hintText: 'Enter password',
             textInputType: TextInputType.emailAddress,
-            textEditingController: _passController,
+            textEditingController: _passwordController,
             isPass: true,
           ),
 
